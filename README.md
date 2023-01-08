@@ -16,8 +16,8 @@ Naive algorithm for steps 3 and 4 require $O(|S|^3)$ comparisons. However, there
 3. If it's sorted, use the following algorithm:
 
 1. Find the minimal $P$ such that $S[0] < S[P]$. If no such $P$, return TRUE.
-2. For all $A < B < P$ check $(!comp(S[A], S[B]) \&\& !comp(S[B], S[A]))$, i.e. all elements before $P$ are equivalent.
-3. For all $A < P$ and $B \geq P$, check $(comp(S[A], S[B]) \&\& !comp(S[B], S[A]))$, i.e. all elements separated by $P$ follows transitivity.
+2. For all $A < B < P$ check $(!comp(S[A], S[B])$ and $!comp(S[B], S[A]))$, i.e. all elements before $P$ are equivalent.
+3. For all $A < P$ and $B \geq P$, check $(comp(S[A], S[B])$ and $!comp(S[B], S[A]))$, i.e. all elements separated by $P$ follows transitivity.
 4. Remove the first P elements from S. Go to step 2.
 
 If any condition at step 2 and 3 is not met, return FALSE. It means strict weak ordering is not met.
