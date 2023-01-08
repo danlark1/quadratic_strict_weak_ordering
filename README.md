@@ -82,7 +82,7 @@ Obviously holds from claim 1: $i < j < i$ otherwise.
 
 ## Claim 5. Transitivity of equivalence also holds
 
-It means that $!comp(S[I], S[J])$, and $!comp(S[J], S[I])$, and $!comp(S[J], S[K])$, and $!comp(S[K], S[J])$, and ($comp(S[I], S[K])$ or $comp(S[K], S[I])$).
+It means that $!comp(S[I], S[J])$, and $!comp(S[J], S[I])$, and $!comp(S[J], S[K])$, and $!comp(S[K], S[J])$, and ( $comp(S[I], S[K])$ or $comp(S[K], S[I])$ ).
 
 Without loss of generality assume $comp(S[I], S[K])$ (also means $I < K$ according to claim 1). If $I \leq J$, then
 
