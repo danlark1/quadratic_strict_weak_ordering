@@ -9,15 +9,15 @@ ordering for a comparator $comp$ and set $S$ means that it satisfies the conditi
 3. Transitivity: if $comp(x, y)$ and $comp(y, z)$ then $comp(x, z)$
 4. Two objects x and y are equivalent if both $comp(x, y)$ and $comp(y, x)$ are false. Then transitivity of equivalence should be met.
 
-Naive algorithm for steps 3 and 4 require $O(|S|^3)$ comparisons. In order to check if set $S$ satisfies this condition, we are going to do the following:
+Naive algorithm for steps 3 and 4 require $O(|S|^3)$ comparisons. However, there are faster algorithms to do that. In order to check if set $S$ satisfies this condition, we are going to do the following:
 
 1. Sort $S$ with some algorithm that correctly sorts it if $S$ satisfies strict weak ordering. **And does not fail if it does not satisfy it.** Bubble sort or heap sort should be good.
 2. Check that the range is sorted. If it's not, we know that $S$ does not satisfy strict weak ordering.
 3. If it's sorted, use the following algorithm:
 
 1. Find the minimal $P$ such that $S[0] < S[P]$. If no such $P$, return TRUE.
-2. For all $A < B < P$ check $(!comp(S[A], S[B]) && !comp(S[B], S[A]))$, i.e. all elements before $P$ are equivalent.
-3. For all $A < P$ and $B \geq P$, check $(comp(S[A], S[B]) && !comp(S[B], S[A]))$, i.e. all elements separated by $P$ follows transitivity.
+2. For all $A < B < P$ check $(!comp(S[A], S[B]) \&\& !comp(S[B], S[A]))$, i.e. all elements before $P$ are equivalent.
+3. For all $A < P$ and $B \geq P$, check $(comp(S[A], S[B]) \&\& !comp(S[B], S[A]))$, i.e. all elements separated by $P$ follows transitivity.
 4. Remove the first P elements from S. Go to step 2.
 
 If any condition at step 2 and 3 is not met, return FALSE. It means strict weak ordering is not met.
@@ -55,9 +55,9 @@ If strict weak ordering is met, the algorithm obviously returns TRUE. Assume it 
 
 Assume $i \geq j$ and $comp(S[i], S[j])$. Then there is a moment when $P$ at step 1 exceeds element $j$ for the first time. Then it holds
 
-$0 < j - \mathrm{removed} = J < P$
+$0 < j - \mathrm{removed index} = J < P$
 
-Then element with index $i - \mathrm{removed} = I = B$ and $A = J$ is checked at steps 2 or 3 and the opposite condition holds.
+Then element with index $i - \mathrm{removed index} = I = B$ and $A = J$ is checked at steps 2 or 3 and the opposite condition holds.
 
 ## Claim 2. $comp(S[i], S[i])$ is false
 
@@ -70,11 +70,11 @@ According to claim 1, we have $i < j < k$.
 
 Find $P$ which exceeds element $i$ for the first time. Then at that step we have
 
-* $comp(S[i - \mathrm{removed}], S[j - \mathrm{removed}])$
+* $comp(S[i - \mathrm{removed index}], S[j - \mathrm{removed index}])$
 * If $P$ exceeds element $j$, then step 2 should return false
-* $comp(S[j - \mathrm{removed}], S[k - \mathrm{removed}])$
+* $comp(S[j - \mathrm{removed index}], S[k - \mathrm{removed index}])$
 * If $P$ exceeds element $k$, then step 2 should return false
-* It means $P < j - \mathrm{removed} < k - \mathrm{removed}$. Then for $A = i - \mathrm{removed}$, $B = k - \mathrm{removed}$ holds the desired condition.
+* It means $P < j - \mathrm{removed index} < k - \mathrm{removed index}$. Then for $A = i - \mathrm{removed index}$, $B = k - \mathrm{removed index}$ holds the desired condition.
 
 ## Claim 4. Assymetry $comp(S[i], S[j])$ implies $!comp(S[j], S[i])$
 
