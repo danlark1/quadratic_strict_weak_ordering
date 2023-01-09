@@ -47,6 +47,8 @@ $ clang++ -g fuzz.cpp -fsanitize=address,fuzzer -std=c++11 -O3 -o fuzz
 In standard libraries this can be used to check if the range satisfies strict weak ordering for a sampled range of
 $O(\sqrt{n})$ elements without hurting too much performance.
 
+[Sortcheck repository](https://github.com/yugr/sortcheck#what-are-current-results) found a lot of problems out there and this can contribute to find even more.
+
 # Proof
 
 If strict weak ordering is met, the algorithm obviously returns TRUE. Assume it returns TRUE and strict weak ordering is not met.
